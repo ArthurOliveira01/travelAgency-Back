@@ -21,9 +21,7 @@ export async function postHotel(req, res){
         }
 
         const insert = await db.query(`INSERT INTO hotels (cityId, description, name, image, priceperday) VALUES('${cityId}', '${description}', '${name}', '${image}', '${priceperday}') RETURNING id;`);
-        console.log('teste 1');
         const hotelsId = insert.rows[0].id;
-        console.log('teste 2');
         await db.query(`INSERT INTO hotelimage (hotelsId, image) VALUES('${hotelsId}', '${extraimage1}');`)
         await db.query(`INSERT INTO hotelimage (hotelsId, image) VALUES('${hotelsId}', '${extraimage2}');`)
         await db.query(`INSERT INTO hotelimage (hotelsId, image) VALUES('${hotelsId}', '${extraimage3}');`)
